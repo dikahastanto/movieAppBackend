@@ -43,23 +43,20 @@ function arrToBox(arr) {
   };
 }
 router.get('/getall', (req, res) => {
-  // movieController.getAllMovie()
-  //   .then(result => res.json(result))
-  //   .catch(err => res.json(err))
-  var RBush = require('rbush');
-  var knn = require('rbush-knn');
+  movieController.getAllMovie()
+    .then(result => res.json(result))
+    .catch(err => res.json(err))
+  // var RBush = require('rbush');
+  // var knn = require('rbush-knn');
 
-  var tree = new RBush(); // create RBush tree
-  var data = [[20000000,21000000,21000000,22000000, '3'], [9000000,1000000,95000000,10500000, '4']].map(arrToBox);
-  tree.load(data);
-  // console.log(data) // bulk insert
-  var neighbors = knn(tree, 25000000, 20000000, data.length); 
-  console.log(neighbors)
+  // var tree = new RBush(); // create RBush tree
+  // var data = [[20000000,21000000,21000000,22000000, '3'], [9000000,1000000,95000000,10500000, '4']].map(arrToBox);
+  // tree.load(data);
+  // // console.log(data) // bulk insert
+  // var neighbors = knn(tree, 25000000, 20000000, data.length); 
+  // console.log(neighbors)
 })
 
-router.get('/a', (req, res) => {
-  
-})
 
 router.get('/getbyid/:id', (req, res) => {
   movieController.getbyId(req.params.id)
